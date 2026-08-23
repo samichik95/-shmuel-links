@@ -1,0 +1,512 @@
+<!doctype html>
+<!-- SHMUEL Links publish -->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#040404" />
+<title>SHMUEL — Links</title>
+<meta name="description" content="כל הקישורים של SHMUEL במקום אחד." />
+<style>
+:root{
+--bg:#040404;
+--bg2:#080808;
+--panel:#0c0d10;
+--gold:#d7a84f;
+--gold2:#f0cf88;
+--gold3:#8d6323;
+--gold-soft:rgba(215,168,79,.16);
+--gold-line:rgba(215,168,79,.58);
+--text:#f7f3eb;
+--sub:#deb96a;
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{
+margin:0;
+color:var(--text);
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+background:
+radial-gradient(circle at 50% 12%, rgba(215,168,79,.07), transparent 18%),
+radial-gradient(circle at 15% 45%, rgba(215,168,79,.03), transparent 18%),
+radial-gradient(circle at 85% 72%, rgba(215,168,79,.03), transparent 18%),
+linear-gradient(180deg, #030303 0%, #050505 45%, #040404 100%);
+overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+/* BACKGROUND */
+.bg{
+position:fixed;
+inset:0;
+overflow:hidden;
+pointer-events:none;
+z-index:-3;
+}
+.mist{
+position:absolute;
+border-radius:50%;
+filter:blur(70px);
+opacity:.10;
+mix-blend-mode:screen;
+background:radial-gradient(circle, rgba(215,168,79,.85), transparent 68%);
+animation:mistDrift 18s ease-in-out infinite alternate;
+}
+.mist.m1{width:320px;height:320px;left:-120px;top:18%}
+.mist.m2{width:360px;height:360px;right:-150px;top:38%;animation-duration:24s;animation-delay:-4s}
+.mist.m3{width:280px;height:280px;left:34%;bottom:-130px;animation-duration:20s;animation-delay:-8s}
+.curve{
+position:absolute;
+border-radius:50%;
+border-top:1px solid rgba(215,168,79,.16);
+box-shadow:0 -1px 22px rgba(215,168,79,.05);
+opacity:.95;
+}
+.curve.c1{
+width:140vw;
+height:54vw;
+left:-18vw;
+top:12%;
+transform:rotate(-8deg);
+animation:curveLeft 14s ease-in-out infinite alternate;
+}
+.curve.c2{
+width:132vw;
+height:52vw;
+right:-18vw;
+top:54%;
+transform:rotate(10deg);
+animation:curveRight 18s ease-in-out infinite alternate;
+opacity:.8;
+}
+.curve.c3{
+width:120vw;
+height:46vw;
+left:-10vw;
+bottom:0;
+transform:rotate(-6deg);
+border-top-color:rgba(215,168,79,.08);
+opacity:.5;
+animation:curveLeft 22s ease-in-out infinite alternate-reverse;
+}
+.curve::before{
+content:"";
+position:absolute;
+inset:15px 0 auto 0;
+height:100%;
+border-radius:inherit;
+border-top:1px solid rgba(215,168,79,.08);
+opacity:.65;
+}
+.spark{
+position:absolute;
+width:3px;
+height:3px;
+border-radius:50%;
+background:var(--gold2);
+box-shadow:0 0 10px rgba(240,207,136,.85);
+opacity:.7;
+animation:twinkle 5s ease-in-out infinite;
+}
+.s1{left:9%;top:16%}
+.s2{left:21%;top:58%;animation-delay:-1.2s}
+.s3{left:35%;top:19%;animation-delay:-2.3s}
+.s4{left:73%;top:23%;animation-delay:-3.1s}
+.s5{left:87%;top:49%;animation-delay:-1.8s}
+.s6{left:92%;top:76%;animation-delay:-4.1s}
+.s7{left:13%;top:83%;animation-delay:-2.6s}
+.s8{left:59%;top:87%;animation-delay:-3.7s}
+.noise{
+position:absolute;
+inset:0;
+opacity:.028;
+background-image:
+linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+background-size:42px 42px;
+mask-image:linear-gradient(to bottom, black, transparent 95%);
+}
+@keyframes mistDrift{
+from{transform:translate3d(0,0,0) scale(1)}
+to{transform:translate3d(30px,20px,0) scale(1.1)}
+}
+@keyframes curveLeft{
+from{transform:translateX(-2%) rotate(-9deg)}
+to{transform:translateX(3%) rotate(-6deg)}
+}
+@keyframes curveRight{
+from{transform:translateX(2%) rotate(10deg)}
+to{transform:translateX(-3%) rotate(7deg)}
+}
+@keyframes twinkle{
+0%,100%{opacity:.18;transform:scale(.8)}
+50%{opacity:1;transform:scale(1.35)}
+}
+@keyframes introOut{
+to{opacity:0;visibility:hidden;pointer-events:none}
+}
+@keyframes introLogo{
+to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes introLine{
+to{width:72%}
+}
+@keyframes pageIn{
+to{opacity:1;transform:translateY(0)}
+}
+@keyframes avatarFloat{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-6px)}
+}
+@keyframes cardIn{
+to{opacity:1;transform:translateY(0)}
+}
+/* INTRO */
+.intro{
+position:fixed;
+inset:0;
+display:grid;
+place-items:center;
+z-index:999;
+background:#040404;
+animation:introOut .8s cubic-bezier(.7,0,.2,1) 1.1s forwards;
+}
+.intro-inner{text-align:center}
+.intro-logo{
+font-size:clamp(44px,10vw,84px);
+font-weight:950;
+letter-spacing:8px;
+direction:ltr;
+background:linear-gradient(180deg,#f7e3af,#d7a84f 58%,#8d6323);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+opacity:0;
+transform:translateY(12px) scale(.97);
+animation:introLogo .62s cubic-bezier(.2,.8,.2,1) .10s forwards;
+}
+.intro-line{
+width:0;
+height:2px;
+margin:16px auto 0;
+background:linear-gradient(90deg,transparent,var(--gold),var(--gold2),transparent);
+box-shadow:0 0 16px rgba(215,168,79,.35);
+animation:introLine .62s ease .32s forwards;
+}
+/* PAGE */
+.page{
+width:min(900px, calc(100% - 30px));
+margin:0 auto;
+padding:42px 0 58px;
+opacity:0;
+transform:translateY(12px);
+animation:pageIn .75s ease 1.18s forwards;
+}
+.hero{
+text-align:center;
+position:relative;
+}
+.hero{
+text-align:center;
+position:relative;
+padding-top:32px;
+}
+.hero-badge{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:8px 16px;
+border-radius:999px;
+border:1px solid rgba(215,168,79,.34);
+background:linear-gradient(180deg, rgba(215,168,79,.10), rgba(255,255,255,.02));
+color:#f0d18e;
+font-size:12px;
+font-weight:800;
+letter-spacing:2.2px;
+direction:ltr;
+margin-bottom:10px;
+box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 0 16px rgba(215,168,79,.05);
+}
+.platform-rail{
+margin-top:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+color:#ebcf93;
+font-size:clamp(14px, 2.2vw, 19px);
+letter-spacing:1.2px;
+direction:ltr;
+text-shadow:0 0 12px rgba(215,168,79,.10);
+}
+.platform-rail span{
+font-weight:700;
+opacity:.95;
+}
+.platform-rail i{
+width:7px;
+height:7px;
+display:inline-block;
+transform:rotate(45deg);
+background:linear-gradient(135deg,#f6e1ab,#c88e31);
+box-shadow:0 0 10px rgba(215,168,79,.22);
+border-radius:1px;
+opacity:.9;
+}
+.handle-line{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:18px;
+margin:14px auto 24px;
+max-width:560px;
+}
+.handle-line::before,
+.handle-line::after{
+content:"";
+height:1px;
+flex:1;
+background:linear-gradient(90deg, transparent, rgba(215,168,79,.58));
+}
+.handle-line::after{
+background:linear-gradient(90deg, rgba(215,168,79,.58), transparent);
+}
+.handle-diamond{
+width:13px;
+height:13px;
+transform:rotate(45deg);
+background:linear-gradient(135deg,#f6e1ab,#c88e31);
+box-shadow:0 0 10px rgba(215,168,79,.28);
+}
+.cards{
+display:grid;
+gap:22px;
+width:min(860px, 100%);
+margin:0 auto;
+}
+.card{
+position:relative;
+display:flex;
+align-items:center;
+gap:22px;
+min-height:132px;
+padding:20px 26px;
+border-radius:31px;
+border:1.5px solid var(--gold-line);
+background:
+linear-gradient(180deg, #0b0c0f 0%, #08090b 100%);
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.05),
+0 14px 34px rgba(0,0,0,.34);
+overflow:hidden;
+opacity:0;
+transform:translateY(12px);
+animation:cardIn .45s ease forwards;
+}
+.card:nth-child(1){animation-delay:1.30s}
+.card:nth-child(2){animation-delay:1.40s}
+.card:nth-child(3){animation-delay:1.50s}.card:nth-child(4){animation-delay:1.60s}.card:nth-child(5){animation-delay:1.70s}
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(110deg, transparent 35%, rgba(240,207,136,.08) 50%, transparent 65%);
+transform:translateX(-120%);
+transition:transform .72s ease;
+pointer-events:none;
+}
+.card:hover{
+transform:translateY(-4px);
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.05),
+0 18px 40px rgba(0,0,0,.40),
+0 0 22px rgba(215,168,79,.05);
+border-color:#e1b85d;
+}
+.card:hover::before{transform:translateX(120%)}
+.icon{
+width:100px;
+min-width:100px;
+display:grid;
+place-items:center;
+}
+.icon svg{display:block;width:66px;height:66px}
+.icon .kick-wordmark{width:78px;height:auto;max-height:30px}
+.copy{
+flex:1;
+min-width:0;
+text-align:left;
+direction:ltr;
+}
+.title{
+font-size:clamp(27px, 4vw, 41px);
+font-weight:900;
+letter-spacing:.4px;
+color:#f8f6f1;
+}
+.sub{
+margin-top:5px;
+font-size:clamp(18px, 2.8vw, 28px);
+color:#d8b25d;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+.arrow{
+font-size:56px;
+line-height:1;
+color:#e7c272;
+font-weight:300;
+text-shadow:0 0 12px rgba(215,168,79,.15);
+padding-inline-start:6px;
+}
+.footer{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:24px;
+margin:34px auto 0;
+max-width:540px;
+}
+.footer::before,
+.footer::after{
+content:"";
+height:1px;
+flex:1;
+background:linear-gradient(90deg, transparent, rgba(215,168,79,.68));
+}
+.footer::after{
+background:linear-gradient(90deg, rgba(215,168,79,.68), transparent);
+}
+.footer-mark{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(215,168,79,.5);color:#e6bd68;font-size:34px;font-weight:900;box-shadow:0 0 14px rgba(215,168,79,.10),inset 0 0 18px rgba(215,168,79,.04)}
+@media (max-width: 720px){
+.page{padding-top:20px}
+.avatar-shell{width:min(300px, 78vw)}
+.name{letter-spacing:2px}
+.cards{gap:16px}
+.card{
+min-height:102px;
+padding:14px 16px 14px 14px;
+border-radius:24px;
+gap:14px;
+}
+.icon{width:72px;min-width:72px}
+.icon svg{width:50px;height:50px}
+.icon .kick-wordmark{width:58px;height:auto;max-height:30px}
+.arrow{font-size:38px}
+.footer-mark{width:58px;height:58px;font-size:28px}
+}
+@media (prefers-reduced-motion: reduce){
+*,*::before,*::after{animation:none!important;transition:none!important}
+.intro{display:none}
+.page,.card{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="bg">
+<div class="mist m1"></div>
+<div class="mist m2"></div>
+<div class="mist m3"></div>
+<div class="curve c1"></div>
+<div class="curve c2"></div>
+<div class="curve c3"></div>
+<div class="spark s1"></div>
+<div class="spark s2"></div>
+<div class="spark s3"></div>
+<div class="spark s4"></div>
+<div class="spark s5"></div>
+<div class="spark s6"></div>
+<div class="spark s7"></div>
+<div class="spark s8"></div>
+<div class="noise"></div>
+</div>
+<div class="intro" aria-hidden="true">
+<div class="intro-inner">
+<div class="intro-logo">SHMUEL</div>
+<div class="intro-line"></div>
+</div>
+</div>
+<main class="page">
+<section class="hero">
+<div class="hero-badge">OFFICIAL LINKS</div>
+<div class="platform-rail" aria-label="platforms">
+<span>KICK</span>
+<i></i>
+<span>YOUTUBE</span>
+<i></i>
+<span>TIKTOK</span>
+<i></i>
+<span>DISCORD</span>
+</div>
+<div class="handle-line"><span class="handle-diamond"></span></div>
+</section>
+<section class="cards">
+<a class="card" href="https://www.youtube.com/@shmuel_8" target="_blank" rel="noopener noreferrer">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 64 64">
+<defs>
+<linearGradient id="ytg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#f4d78f"/>
+<stop offset="1" stop-color="#a56c20"/>
+</linearGradient>
+</defs>
+<rect x="8" y="8" width="48" height="48" rx="12" fill="url(#ytg)"/>
+<polygon points="28,22 28,42 44,32" fill="#111111"/>
+</svg>
+</div>
+<div class="copy">
+<div class="title">YOUTUBE</div>
+<div class="sub">@shmuel_8</div>
+</div>
+<div class="arrow">›</div>
+</a>
+<a class="card" href="https://kick.com/shmuel-8" target="_blank" rel="noopener noreferrer">
+<div class="icon" aria-hidden="true">
+<svg class="kick-wordmark" viewBox="0 0 933 300" role="img" aria-label="Kick">
+<path fill-rule="evenodd" clip-rule="evenodd"
+d="M0 0H100V66.6667H133.333V33.3333H166.667V0H266.667V100H233.333V133.333H200V166.667H233.333V200H266.667V300H166.667V266.667H133.333V233.333H100V300H0V0ZM666.667 0H766.667V66.6667H800V33.3333H833.333V0H933.333V100H900V133.333H866.667V166.667H900V200H933.333V300H833.333V266.667H800V233.333H766.667V300H666.667V0ZM300 0H400V300H300V0ZM533.333 0H466.667V33.3333H433.333V266.667H466.667V300H533.333H633.333V200H533.333V100H633.333V0H533.333Z"
+fill="#53FC18"/>
+</svg>
+</div>
+<div class="copy">
+<div class="title">KICK</div>
+<div class="sub">kick.com/shmuel-8</div>
+</div>
+<div class="arrow">›</div>
+</a>
+<a class="card" href="https://www.tiktok.com/@dreeamboy_8?_r=1&_t=ZS-97R14om8RqD" target="_blank" rel="noopener noreferrer">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 64 64">
+<g transform="translate(9 3)">
+<path d="M22 9c2.8 6 7.1 9.1 14 9.6V29c-5.2-.1-9.8-1.8-14-4.9v12.8c0 10.5-7.7 17-16.2 17C-2.4 53.9-9 47.2-9 38.7c0-9.1 7.4-15.2 16.7-15.2 1 0 2 .1 3 .3v10.1a8.7 8.7 0 0 0-3.1-.6c-4 0-6.8 2.4-6.8 5.8 0 3.2 2.5 5.5 5.9 5.5 4 0 6.3-2.6 6.3-6.7V9H22z" fill="#25F4EE"/>
+<path d="M25 7.6c2.8 6 7.1 9.1 14 9.6v10.4c-5.2-.1-9.8-1.8-14-4.9v12.8c0 10.5-7.7 17-16.2 17C-.4 52.5-7 45.8-7 37.3c0-9.1 7.4-15.2 16.7-15.2 1 0 2 .1 3 .3v10.1a8.7 8.7 0 0 0-3.1-.6c-4 0-6.8 2.4-6.8 5.8 0 3.2 2.5 5.5 5.9 5.5 4 0 6.3-2.6 6.3-6.7V7.6H25z" fill="#FE2C55" opacity=".88"/>
+<path d="M23.5 8.3c2.8 6 7.1 9.1 14 9.6v10.4c-5.2-.1-9.8-1.8-14-4.9v12.8c0 10.5-7.7 17-16.2 17C-1.9 53.2-8.5 46.5-8.5 38c0-9.1 7.4-15.2 16.7-15.2 1 0 2 .1 3 .3v10.1a8.7 8.7 0 0 0-3.1-.6c-4 0-6.8 2.4-6.8 5.8 0 3.2 2.5 5.5 5.9 5.5 4 0 6.3-2.6 6.3-6.7V8.3h10z" fill="#ffffff"/>
+</g>
+</svg>
+</div>
+<div class="copy">
+<div class="title">TIKTOK</div>
+<div class="sub">@dreeamboy_8</div>
+</div>
+<div class="arrow">›</div>
+</a>
+<a class="card" href="https://discord.gg/cjhvEBFdP" target="_blank" rel="noopener noreferrer">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 64 64">
+<path d="M18 16c5-2 9-3 14-3s9 1 14 3c4 6 7 14 7 23-5 5-10 8-16 10l-4-6c2-.5 4-1.2 6-2.2-1.8.8-4.5 1.6-7 1.6s-5.2-.8-7-1.6c2 .9 4 1.7 6 2.2l-4 6c-6-2-11-5-16-10 0-9 3-17 7-23z" fill="#5865F2"/>
+<circle cx="25" cy="31" r="4" fill="#fff"/>
+<circle cx="39" cy="31" r="4" fill="#fff"/>
+</svg>
+</div>
+<div class="copy">
+<div class="title">DISCORD</div>
+<div class="sub">discord.gg/cjhvEBFdP</div>
+</div>
+<div class="arrow">›</div>
+</a>
+</section>
+<div class="footer"><div class="footer-mark">S</div></div>
+</main>
+</body>
+</html>
